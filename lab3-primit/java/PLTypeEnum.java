@@ -32,42 +32,39 @@ public class PLTypeEnum
         return result;
     }
   
-    private static PLType pl2PLType(PL pl)
+    private static PL PLType_to_pl(PLType plt)
     {
-        PLType type = null;
+        PL name = null;
         
-        switch (pl)
+        switch (plt)
         {
-        case JAVA:
-        case PYTHON:
-            type = PLType.OO;
+        case OO:
+            name = PL.JAVA;
             break;
-        case C:
-        case ADA:
-            type = PLType.PROCEDURAL;
+        case PROCEDURAL:
+            name = PL.C;
             break;
-        case LISP:
-        case HASKELL:
-            type = PLType.FUNCTIONAL;
+        case FUNCTIONAL:
+            name = PL.HASKELL;
             break;
-        case PROLOG:
-            type = PLType.LOGICAL;
+        case LOGICAL:
+            name = PL.PROLOG;
             break;
         }
         
-        return type;
+        return name;
     }
 
     public static void main(String[] args)
     {
-        System.out.print("Known PLs = ");
-        for (PL t : EnumSet.allOf(PL.class)) 
+        System.out.print("Known PLTypes = ");
+        for (PLType t : EnumSet.allOf(PLType.class)) 
         {
             System.out.print(t + " ");
         }
         System.out.println();
         
-        PL pl = getEnumElement("programming language", PL.class);
-        System.out.println(pl + " is of type: " + pl2PLType(pl));
+        PLType plt = getEnumElement("PLTypes : ", PLType.class);
+        System.out.println(plt + " LANGUAGE : " + PLType_to_pl(plt));
     }
 }
