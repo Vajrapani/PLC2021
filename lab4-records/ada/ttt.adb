@@ -50,12 +50,23 @@ procedure TTT is
     end Put_Board;
 
     -- start of code to focus on in Practical 4
+    type game_state is
+	(COMPLETE, IN_PROGRESS);
 
-    type GamePos is
+    type variant is
+        (WON, LOST);
+
+    type GamePos (state : game_state:= IN_PROGRESS) is
         record
             board : TTTBoard;
-            turn : Player;
-            value : Float;
+	    case state is
+		when IN_PROGRESS =>
+                    turn : Player;
+                    value : Float;
+	        when COMPLETE =>
+		    pos_variant : variant;
+	            winner : Player;
+	    end case;
         end record;
 
     procedure Put_Pos(pos : GamePos) is
@@ -70,23 +81,23 @@ procedure TTT is
     end Put_Pos;
 
     gamePos1 : GamePos
-        := (board =>
+        := (state => IN_PROGRESS,board =>
                 ((X, X, O),
                  (O, B, X),
                  (O, B, B)),
             turn => Player_X,
             value => 0.0);
 
---     gamePos2 : GamePos
---         := (pos_variant => WON, -- the discriminant
---             board =>
---                 ((X, X, O),
---                  (O, X, X),
---                  (O, O, X)),
---             winner => Player_X);
+    gamePos2 : GamePos
+        := (state => COMPLETE,pos_variant => WON, -- the discriminant
+             board =>
+                 ((X, X, O),
+                 (O, X, X),
+                 (O, O, X)),
+            winner => Player_X);
 
 begin
     Put_Pos(gamePos1);
     Put_Line("");
---     Put_Pos(gamePos2);
+    Put_Pos(gamePos2);
 end TTT;
