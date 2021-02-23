@@ -72,12 +72,21 @@ procedure TTT is
     procedure Put_Pos(pos : GamePos) is
     begin
         Put_Board(pos.board);
-        Put("Player to make the next move: ");
-        Put(pos.turn);
-        Put_Line("");
-        Put("Estimated advantage of player X over player O is: ");
-        Put(pos.value, 0, 0, 0);
-        Put_Line("");
+	New_Line;
+
+	case Pos.State is
+	    when IN_PROGRESS =>
+        	Put("Player to make the next move: ");
+        	Put(pos.turn);
+        	Put_Line("");
+        	Put("Estimated advantage of player X over player O is: ");
+        	Put(pos.value, 0, 0, 0);
+        	Put_Line("");
+	    when COMPLETE =>
+		Put("The Winner is: ");
+		Put(pos.winner);
+		New_Line;
+	end case;	
     end Put_Pos;
 
     gamePos1 : GamePos
