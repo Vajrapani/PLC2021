@@ -105,7 +105,7 @@ eventsNoPause = \
 
 # pick up players who were pausing
 pausingPlayers = \
-    [] # TASK 5.3.(b) -- replace [] by a list comprehension
+    [event.player for event in events if ((event.__class__ == Pause))] # TASK 5.3.(b) -- replace [] by a list comprehension
 
 print("Pausing players:", pausingPlayers)
 
