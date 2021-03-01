@@ -146,10 +146,10 @@ players =
     [ ev_player event | event <- events ]
 
 eventsNoPause =
-    [ event | event <- events, not (isPause event) ]
+    [ event | event <- events, (isPause event) ]
 
 playersPause =
-    players -- Task 5.4(a) (delete "players" first)
+    [ev_player event | event <- events, (isPause event) ] -- Task 5.4(a) (delete "players" first)
 
 games :: [[Event]]
 games = [events, tail (reverse events), [], [EventWin Player_O]]
