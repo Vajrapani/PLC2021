@@ -183,7 +183,7 @@ public class tttColl
         List<TTTEvent> events2 = new ArrayList<TTTEvent>();
         for (TTTEvent event : events)
         {
-            if ( ! (event instanceof Pause))
+            if (! (event instanceof Pause))
             {
                 events2.add(event);
             }
@@ -191,6 +191,13 @@ public class tttColl
 
         // extract all players that pause from the events list
         List<Player> pausingPlayers = new ArrayList<Player>();
+	for(TTTEvent event : events)
+	{
+		if(event instanceof Pause){
+			pausingPlayers.add(((Pause)event).player);
+		}
+	}
+
         // TASK 5.2.(b): make sure this variable has the value described in the comment
 
         System.out.print("Pausing players: ");
