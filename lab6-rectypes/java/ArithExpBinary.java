@@ -55,6 +55,8 @@ class ArithExpBinary extends ArithExp
         // increment also both sub-expressions:
         // TASK 6.2.(b) (Q2): (complete the method)
 
+	subExpLeft.incrementAllNumbers();
+	subExpRight.incrementAllNumbers();
 
     }
 
