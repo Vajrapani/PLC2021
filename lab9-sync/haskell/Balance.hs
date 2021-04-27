@@ -10,6 +10,18 @@ main =
     stateTV <- atomically $ newTVar initState
     -- create and start some threads:
     -- *** TASK 9.2.(d) ***
+    forkIO (BalancingAB stateTV)
+    forkIO (switchOnOff RUNNING stateTV)
+    threadDelay 10000000
+
+    forkIO (BalancingBC stateTV)
+    forkIO (switchOnOff RUNNING stateTV)
+    threadDelay 10000000
+
+    forkIO (BalancingCD stateTV)
+    forkIO (switchOnOff RUNNING stateTV)
+    threadDelay 10000000
+
 
 
     
