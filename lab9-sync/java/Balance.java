@@ -199,10 +199,13 @@ public class Balance
 
     public static void main(String[] args)
     {
+	new Thread(new BalanceAB()).start();
+ 	new Thread(new BalanceBC()).start();
+	new Thread(new BalanceCD()).start();
         // start the balance threads:
         /* TASK 9.2.(b) */
 
-
+	
 
 
         // set a task to the balancer:
